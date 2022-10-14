@@ -8,16 +8,29 @@ namespace DependencyInjectionExample
 {
     public class EmployeeBL
     {
-        public IEmployeeDAL employeeDal;
+        //Constructor DI *Starts Here*
+        //public IEmployeeDAL employeeDAL;
+        //public EmployeeBL(IEmployeeDAL employeeDal)
+        //{
+        //    this._employeeDal = employeeDal;
+        //}
+        //public List<Employee> GetAllEmployees()
+        //{
+        //    return _employeeDal.SelectAllEmployees();
+        //}
 
-        public EmployeeBL(IEmployeeDAL employeeDal)
+
+        //Property DI *Starts Here*
+        private IEmployeeDAL _employeeDal;
+        public IEmployeeDAL employeeDataObject
         {
-            this.employeeDal = employeeDal;
+            set => this._employeeDal = value;
+            get => (employeeDataObject == null) ? throw new Exception("Employee not initialized") : _employeeDal;
         }
 
         public List<Employee> GetAllEmployees()
         {
-            return employeeDal.SelectAllEmployees();
+            return _employeeDal.SelectAllEmployees();
         }
     }
 }
