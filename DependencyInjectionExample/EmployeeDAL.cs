@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace DependencyInjectionExample
 {
-    public class EmployeeDAL
+    public interface IEmployeeDAL
+    {
+        List<Employee> SelectAllEmployees();
+    }
+    public class EmployeeDAL: IEmployeeDAL
     {
         public List<Employee> SelectAllEmployees()
         {

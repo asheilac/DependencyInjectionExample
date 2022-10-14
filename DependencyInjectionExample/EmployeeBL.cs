@@ -8,11 +8,15 @@ namespace DependencyInjectionExample
 {
     public class EmployeeBL
     {
-        public EmployeeDAL employeeDal;
+        public IEmployeeDAL employeeDal;
+
+        public EmployeeBL(IEmployeeDAL employeeDal)
+        {
+            this.employeeDal = employeeDal;
+        }
 
         public List<Employee> GetAllEmployees()
         {
-            employeeDal = new EmployeeDAL();
             return employeeDal.SelectAllEmployees();
         }
     }
